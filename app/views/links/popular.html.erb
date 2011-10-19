@@ -1,0 +1,17 @@
+<h1><%= @page_title %></h1>
+
+<table>
+  <tr>
+    <th>Rank</th>
+    <th>Shortcut</th>
+    <th>Url</th>
+  </tr>
+
+  <% @links.each_with_index do |link, ii| %>
+    <tr>
+      <td><%= ii + 1 %></td>
+      <td><%= link.shortcut %></td>
+      <td><%= link.url %></td>
+    </tr>
+  <% end %>
+</table>

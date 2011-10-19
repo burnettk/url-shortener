@@ -1,0 +1,48 @@
+<p>Hey, keep in mind that shortcuts and urls that you add to this site are public! Other people can see them and use them too!.</p>
+
+<%= form_for(@link) do |f| %>
+  <% if @link.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@link.errors.count, "error") %> prohibited this shortcut from being saved:</h2>
+
+      <ul>
+      <% @link.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :shortcut %>
+    <%= f.text_field :shortcut %>
+  </div>
+  <div class="field">
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+  </div>
+  <div id="notes_to_user"></div>
+  <div class="actions">
+    <%= f.submit('Create') %>
+    <%= link_to 'Cancel', root_path %>
+  </div>
+<% end %>
+
+<%= javascript_tag do %>
+  var MakeClearWhatIsHappening = {
+    now: function(event) {
+      var shortcut = $('link_shortcut').getValue();
+      var url = $('link_url').getValue();
+      if (shortcut.empty()) shortcut = '?';
+      if (url.empty()) url = '?';
+      $('notes_to_user').update("When you go to <strong><%= App.programmatic_name %>/" + shortcut + "</strong>, you will be taken to <strong>" + url + "</strong>");
+    }
+  }
+
+  MakeClearWhatIsHappening.now();
+
+  $('link_shortcut').focus();
+
+  new Form.Element.Observer('link_shortcut', 1, MakeClearWhatIsHappening.now);
+  new Form.Element.Observer('link_url', 1, MakeClearWhatIsHappening.now);
+<% end %>
