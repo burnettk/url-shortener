@@ -1,4 +1,4 @@
-L::Application.routes.draw do
+Rs::Application.routes.draw do
   resources :links
 
   root :to => 'links#index'
