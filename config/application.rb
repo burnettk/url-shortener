@@ -39,7 +39,7 @@ module Rs
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     
-    config.generators do |g|
+    config.app_generators do |g|
       g.test_framework  :test_unit, :fixture => true, :fixture_replacement => :factory_girl
       g.helper false
       g.stylesheets false
