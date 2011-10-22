@@ -94,4 +94,4 @@ DEPENDENCIES
   mysql2
   rails (= 3.0.0)
   rails3-generators
-  rubycas-client (= 2.2.1)!
+  rubycas-client!

@@ -5,7 +5,7 @@
   <tr>
     <th>Shortcut</th>
     <th>Url</th>
-    <th>Last use (just for shortcuts with % in them)</th>
+    <th>Last use (just for shortcuts with %s in them)</th>
     <th>Actions</th>
   </tr>
 
@@ -20,7 +20,7 @@
       <% else %>
         <td></td>
       <% end %>
-      <td><%= link_to 'Edit', edit_link_path(link) %></td>
+      <td><%= link_to 'Edit', edit_link_path(link) %> | <%= link_to 'Delete', link, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>
@@ -29,28 +29,3 @@
 <% end %>
 
 <%= link_to 'Add a shortcut', new_link_path %>
-
-<% if false %>
-<h1>Listing links</h1>
-
-<table>
-  <tr>
-    <th>Shortcut</th>
-    <th>Url</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @links.each do |link| %>
-  <tr>
-    <td><%= link.shortcut %></td>
-    <td><%= link.url %></td>
-    <td><%= link_to 'Show', link %></td>
-    <td><%= link_to 'Edit', edit_link_path(link) %></td>
-    <td><%= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<% end %>

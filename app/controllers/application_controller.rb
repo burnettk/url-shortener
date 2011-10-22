@@ -2,8 +2,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :handle_authorization, :except => [:sign_out]
 
+private
   def render_404
-    render :nothing => true, :status => 404
+    render :text => '<h1>Page not found</h1>', :status => 404
     true  # so we can do "render_404 and return"
   end
 

@@ -33,9 +33,10 @@
     now: function(event) {
       var shortcut = $('link_shortcut').getValue();
       var url = $('link_url').getValue();
+      if (url === 'http://') url += '?';
       if (shortcut.empty()) shortcut = '?';
       if (url.empty()) url = '?';
-      $('notes_to_user').update("When you go to <strong><%= App.programmatic_name %>/" + shortcut + "</strong>, you will be taken to <strong>" + url + "</strong>");
+      $('notes_to_user').update("When you go to <strong><%= App.programmatic_name %>/" + shortcut + "</strong> in your browser, you will be taken to <strong>" + url + "</strong>");
     }
   }
 

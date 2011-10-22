@@ -6,7 +6,7 @@ gem 'mysql2'
 
 gem 'inherited_resources'
 
-gem 'rubycas-client', '2.2.1', :path => "#{File.expand_path(__FILE__)}/../vendor/gems/rubycas-client-2.2.1"
+gem 'rubycas-client', :path => 'vendor/gems/rubycas-client-2.2.1'
 
 gem 'addressable'
 
