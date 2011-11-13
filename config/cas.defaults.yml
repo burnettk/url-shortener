@@ -1,4 +1,4 @@
-enabled: false
+enabled: true 
 base_url: "https://cas.rosettastone.com/"
-http_proxy: "opxdev.lan.flt:8080"
+http_proxy: ~
 force_ssl_verification: false

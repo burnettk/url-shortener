@@ -9,7 +9,7 @@ class LinksControllerTest < ActionController::TestCase
   test "should get index" do
     get :index, {}, {:rs_username => 'kburnett'}
     assert_response :success
-    assert_not_nil assigns(:links)
+    assert_not_nil assigns(:my_links)
   end
 
   test "should get go with rs_username" do

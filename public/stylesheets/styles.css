@@ -77,7 +77,7 @@ h1 {
 }
 
 h2 {
-  font: 1.4em/1.4em Arial, Georgia, Times, "Times New Roman", serif;
+  font: 1.6em/1.6em Arial, Georgia, Times, "Times New Roman", serif;
   color: #333;
   margin: 2px 0;
   text-shadow: 0.1em 0.1em 0.2em rgba(60, 60, 60, 0.2);
@@ -184,3 +184,16 @@ table td { border-top: 1px solid #ddd; }
 tbody tr:nth-child(even) { background-color: #eee; }
 
 th { font-weight: bold; white-space: nowrap; }
+
+.look_at_me {
+  margin-bottom: 10px;
+  padding: 10px 10px 10px 25px;
+  border: 1px solid #ccc;
+  background-color: #e99;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.1);
+  -webkit-box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.1);
+  box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.1);
+}

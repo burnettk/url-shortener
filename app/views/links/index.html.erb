@@ -1,29 +1,53 @@
 <h1><%= @page_title %></h1>
 
-<% if @links.any? %>
-<table>
-  <tr>
-    <th>Shortcut</th>
-    <th>Url</th>
-    <th>Last use (just for shortcuts with %s in them)</th>
-    <th>Actions</th>
-  </tr>
 
-  <% @links.each_with_index do |link, ii| %>
+<% if @other_links.any? %>
+  <h2>Random shortcut added by another user</h2>
+  <table>
     <tr>
-      <% destination = link.url.include?('%s') ? nil : go_path(:path => link.shortcut) %>
-      <td><%= destination ? link_to(link.shortcut, destination) : link.shortcut %></td>
-      <td><%= destination ? link_to(link.url, destination) : link.url %></td>
-      <% path = link.link_visits.first.if_hot {|lv| lv.path } %>
-      <% if !destination && path %>
-        <td><%= link_to(go_url(path), go_path(path)) %></td>
-      <% else %>
-        <td></td>
-      <% end %>
-      <td><%= link_to 'Edit', edit_link_path(link) %> | <%= link_to 'Delete', link, :confirm => 'Are you sure?', :method => :delete %></td>
+      <th>Shortcut</th>
+      <th>Url</th>
     </tr>
-  <% end %>
-</table>
+
+    <% @other_links.each_with_index do |link, ii| %>
+      <tr>
+        <% destination = link.url.include?('%s') ? nil : go_path(:path => link.shortcut) %>
+        <td><%= destination ? link_to(link.shortcut, destination) : link.shortcut %></td>
+        <td><%= destination ? link_to(link.url, destination) : link.url %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<h2>My Shortcuts</h2>
+
+<% if @my_links.any? %>
+  <table>
+    <tr>
+      <th>Shortcut</th>
+      <th>Url</th>
+      <th>Actions</th>
+    </tr>
+
+    <% @my_links.each_with_index do |link, ii| %>
+      <tr>
+        <% destination = link.url.include?('%s') ? nil : go_path(:path => link.shortcut) %>
+        <td><%= destination ? link_to(link.shortcut, destination) : link.shortcut %></td>
+        <td>
+          <% if destination %>
+            <%= link_to(link.url, destination) %>
+          <% else %>
+            <%= link.url %>
+            <% path = link.link_visits.first.if_hot {|lv| lv.path } %>
+            <% if path %>
+              (last used: <%= link_to(go_url(path), go_path(path)) %>)
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= link_to 'Edit', edit_link_path(link) %> | <%= link_to 'Delete', link, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
+  </table>
 <% else %>
   <p>You haven't added any shortcuts yet. Read <%= link_to 'about this site', about_path %>.</p>
 <% end %>
