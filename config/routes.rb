@@ -5,7 +5,7 @@ Rs::Application.routes.draw do
   match "sign_out" => 'authentication#sign_out', :as => :sign_out
   match 'popular' => 'links#popular'
   match 'about' => 'home#about'
-  match '*path' => 'links#go', :as => :go
+  match '*path' => 'links#go', :as => :go, :format => false # path can be anything, including periods
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
