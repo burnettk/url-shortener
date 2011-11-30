@@ -10,8 +10,7 @@ class LinksController < InheritedResources::Base
   def go
     destination_url = Link.process_path_for_user!(params[:path], find_user)
     if destination_url
-      encoded_url_since_spaces_are_bad = Addressable::URI.encode(destination_url)
-      redirect_to encoded_url_since_spaces_are_bad
+      redirect_to destination_url
     else
       render_404
     end

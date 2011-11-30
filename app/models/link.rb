@@ -39,7 +39,7 @@ class Link < ActiveRecord::Base
 
   def generated_url
     if matched_segment
-      url.sub('%s', matched_segment)
+      url.sub('%s', Addressable::URI.encode(matched_segment))
     else
       url
     end

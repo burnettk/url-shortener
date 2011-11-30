@@ -12,6 +12,17 @@ class LinkTest < ActiveSupport::TestCase
     assert_finds_url('http://jazz/workitem/3', 'j/3', @user)
   end
 
+  test "find_by_path escapes spaces in the wildcard substituted input" do
+    link = Factory.create(:link, :shortcut => 'ml/%s', :url => 'http://people.lan.flt/mailing_lists/members/%s', :user => @user)
+    assert_finds_url('http://people.lan.flt/mailing_lists/members/@RS%20Core%20Platform', 'ml/@RS Core Platform', @user)
+  end
+
+  test "find_by_path does not double escape" do
+    url = 'https://jazz.lan.flt:9443/jazz/web/projects/SDQA#action=com.ibm.team.dashboard.viewDashboard&team=Core%20Platform&tab=_2'
+    link = Factory.create(:link, :shortcut => 'dashboard', :url => url, :user => @user)
+    assert_finds_url(url, 'dashboard', @user)
+  end
+
   test "shortcuts must not contain spaces" do
     link = Factory.build(:link, :shortcut => 'j %s', :url => 'http://jazz/%s', :user => @user)
     assert_false link.valid?
