@@ -5,6 +5,18 @@ class LinkTest < ActiveSupport::TestCase
     @user = Factory(:user)
   end
 
+  test "empty path is bad" do
+    link = Factory.build(:link, :shortcut => '', :url => 'http://', :user => @user)
+    assert_equal false, link.valid?
+    assert_equal "Shortcut can't be blank", link.errors.full_messages.first
+  end
+  
+  test "single slash is bad" do
+    link = Factory.build(:link, :shortcut => '/', :url => 'http://', :user => @user)
+    assert_equal false, link.valid?
+    assert_equal "Shortcut must not be a single slash", link.errors.full_messages.first
+  end
+  
   test "find_by_path" do
     link = Factory.create(:link, :shortcut => 'j', :url => 'http://jazz', :user => @user)
     link = Factory.create(:link, :shortcut => 'j/%s', :url => 'http://jazz/workitem/%s', :user => @user)

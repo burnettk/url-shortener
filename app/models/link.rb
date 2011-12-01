@@ -4,6 +4,7 @@ class Link < ActiveRecord::Base
   has_many :users, :through => :link_visits
 
   validates_uniqueness_of :shortcut
+  validates_presence_of :shortcut
   validate :validate_format_of_shortcut
   validates_format_of :url, :with => /^http/, :message => 'must start with http'
 
@@ -50,6 +51,8 @@ class Link < ActiveRecord::Base
 
     if shortcut.include?(' ')
       errors.add(:shortcut, 'must not contain spaces')
+    elsif shortcut.to_s.strip == '/'
+      errors.add(:shortcut, 'must not be a single slash')
     elsif shortcut.include?('%s')
       if shortcut !~ /\w\/.*\%s/
         errors.add(:shortcut, 'must have at least one character and one slash before a %s (wildcard). Use this convention: j/%s')
