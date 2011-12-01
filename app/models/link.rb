@@ -32,7 +32,7 @@ class Link < ActiveRecord::Base
 
   def matches?(path)
     regex = shortcut.gsub('%s', '(.*)')
-    if matchdata = Regexp.new(regex).match(path)
+    if matchdata = Regexp.new('^' + regex + '$').match(path)
       self.matched_segment = matchdata.captures.first
     end
   end
