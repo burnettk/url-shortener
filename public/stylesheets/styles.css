@@ -181,6 +181,9 @@ table td.disabled { background: #e0e0e0; }
 table td.default { background: #99ccff; }
 table th { font-weight: bold; }
 table td { border-top: 1px solid #ddd; }
+table td.actions {
+  white-space: nowrap;
+}
 tbody tr:nth-child(even) { background-color: #eee; }
 
 th { font-weight: bold; white-space: nowrap; }
@@ -196,4 +199,14 @@ th { font-weight: bold; white-space: nowrap; }
   -moz-box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.1);
   -webkit-box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.1);
   box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.1);
+}
+
+ul {
+  list-style-type: disc; 
+  list-style-position: inside;
+  margin-bottom: 12px;
+}
+
+ul li {
+  margin-left: 12px;
 }

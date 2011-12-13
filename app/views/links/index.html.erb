@@ -7,6 +7,7 @@
     <tr>
       <th>Shortcut</th>
       <th>Url</th>
+      <th>Actions</th>
     </tr>
 
     <% @other_links.each_with_index do |link, ii| %>
@@ -14,6 +15,7 @@
         <% destination = link.url.include?('%s') ? nil : go_path(:path => link.shortcut) %>
         <td><%= destination ? link_to(link.shortcut, destination) : link.shortcut %></td>
         <td><%= destination ? link_to(link.url, destination) : link.url %></td>
+        <td><%= link_to 'More info', link_path(link) %></td>
       </tr>
     <% end %>
   </table>
@@ -44,7 +46,7 @@
             <% end %>
           <% end %>
         </td>
-        <td><%= link_to 'Edit', edit_link_path(link) %> | <%= link_to 'Delete', link, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td class="actions"><%= link_to 'Edit', edit_link_path(link) %> | <%= link_to 'Delete', link, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'More info', link_path(link) %></td>
       </tr>
     <% end %>
   </table>
