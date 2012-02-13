@@ -1,4 +1,11 @@
 PATH
+  remote: vendor/gems/rosettastone_tools
+  specs:
+    rosettastone_tools (1.0.0)
+      activesupport
+      i18n
+
+PATH
   remote: vendor/gems/rubycas-client-2.2.1
   specs:
     rubycas-client (2.2.1)
@@ -111,4 +118,5 @@ DEPENDENCIES
   mysql2
   rails
   rails3-generators
+  rosettastone_tools!
   rubycas-client!

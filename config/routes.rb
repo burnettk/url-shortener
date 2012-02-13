@@ -1,5 +1,9 @@
 Rs::Application.routes.draw do
-  resources :links
+  resources :links do
+    collection do
+      get :my, :path => 'mine'
+    end
+  end
 
   root :to => 'links#index'
   match "sign_out" => 'authentication#sign_out', :as => :sign_out
