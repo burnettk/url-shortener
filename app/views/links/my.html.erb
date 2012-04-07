@@ -1,18 +1,18 @@
 <h1><%= @page_title %></h1>
 
 <% if @my_links.any? %>
-  <table>
+  <table class="links">
     <tr>
-      <th>Shortcut</th>
-      <th>Url</th>
-      <th>Actions</th>
+      <th class="shortcut">Shortcut</th>
+      <th class="destination">Url</th>
+      <th class="actions">Actions</th>
     </tr>
 
     <% @my_links.each_with_index do |link, ii| %>
       <tr>
         <% destination = link.url.include?('%s') ? nil : go_path(:path => link.shortcut) %>
-        <td><%= destination ? link_to(link.shortcut, destination) : link.shortcut %></td>
-        <td>
+        <td class="shortcut"><%= destination ? link_to(link.shortcut, destination) : link.shortcut %></td>
+        <td class="destination">
           <% if destination %>
             <%= link_to(link.url, destination) %>
           <% else %>

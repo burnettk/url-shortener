@@ -181,10 +181,37 @@ table td.disabled { background: #e0e0e0; }
 table td.default { background: #99ccff; }
 table th { font-weight: bold; }
 table td { border-top: 1px solid #ddd; }
-table td.actions {
+tbody tr:nth-child(even) { background-color: #eee; }
+
+table.links {
+  table-layout: fixed;
+  /*width: 920px; */
+  width:100%
   white-space: nowrap;
 }
-tbody tr:nth-child(even) { background-color: #eee; }
+
+table td.rank, table th.rank {
+  white-space: nowrap;
+  width: 15%;
+  overflow: hidden;
+}
+
+table td.shortcut, table th.shortcut {
+  white-space: nowrap;
+  width: 20%;
+  overflow: hidden;
+}
+
+table td.destination, table th.destination {
+  white-space: nowrap;
+  width: 65%;
+  overflow: hidden;
+}
+
+table td.actions, table th.actions {
+  white-space: nowrap;
+  width: 15%;
+}
 
 th { font-weight: bold; white-space: nowrap; }
 
