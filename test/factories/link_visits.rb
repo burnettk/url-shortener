@@ -1,5 +1,7 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
-Factory.define :link_visit do |f|
-  f.path "MyString"
+FactoryGirl.define do
+  factory :link_visit do
+    path "MyString"
+  end
 end

@@ -2,7 +2,7 @@ require File.expand_path('../test_helper', File.dirname(__FILE__))
 
 class LinksControllerTest < ActionController::TestCase
   setup do
-    @link = Factory(:link)
+    @link = FactoryGirl.create(:link)
     @controller.stubs(:handle_authorization)
   end
 
