@@ -2,6 +2,7 @@ Rs::Application.routes.draw do
   resources :links do
     collection do
       get :my, :path => 'mine'
+      get :all, :path => 'all'
     end
   end
 

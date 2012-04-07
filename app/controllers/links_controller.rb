@@ -27,6 +27,11 @@ class LinksController < InheritedResources::Base
     @my_links = find_user.links.order('created_at desc').limit(6).all
   end
 
+  def all
+    @page_title = 'All Shortcuts'
+    @links = Link.order('shortcut').all
+  end
+
   def my
     @page_title = 'My Shortcuts'
     @my_links = find_user.links.order('created_at desc').all
