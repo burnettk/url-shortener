@@ -6,7 +6,7 @@ en:
 
   activerecord:
     models:
-      link: Shortcut
+      shortcut: Shortcut
   
   flash:
     actions:

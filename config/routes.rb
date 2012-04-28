@@ -1,16 +1,16 @@
 Rs::Application.routes.draw do
-  resources :links do
+  resources :shortcuts do
     collection do
       get :my, :path => 'mine'
       get :all, :path => 'all'
     end
   end
 
-  root :to => 'links#index'
+  root :to => 'shortcuts#index'
   match "sign_out" => 'authentication#sign_out', :as => :sign_out
-  match 'popular' => 'links#popular'
+  match 'popular' => 'shortcuts#popular'
   match 'about' => 'home#about'
-  match '*path' => 'links#go', :as => :go, :format => false # path can be anything, including periods
+  match '*path' => 'shortcuts#go', :as => :go, :format => false # path can be anything, including periods
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

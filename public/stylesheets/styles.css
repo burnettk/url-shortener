@@ -183,7 +183,7 @@ table th { font-weight: bold; }
 table td { border-top: 1px solid #ddd; }
 tbody tr:nth-child(even) { background-color: #eee; }
 
-table.links {
+table.shortcuts {
   table-layout: fixed;
   /*width: 920px; */
   width:100%

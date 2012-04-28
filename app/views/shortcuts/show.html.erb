@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Shortcut:</b>
+  <%= @shortcut.shortcut %>
+</p>
+
+<% destination = @shortcut.url.include?('%s') ? nil : go_path(:path => @shortcut.shortcut) %>
+<p>
+  <b>Url:</b>
+  <% if destination %>
+    <%= link_to(@shortcut.url, destination) %>
+  <% else %>
+    <%= @shortcut.url %>
+  <% end %>
+</p>
+
+<p>
+  <b>Added by:</b>
+  <%= @shortcut.user.if_hot {|u| u.identifier } %>
+</p>
+
+
+<% if @shortcut.url.include?('%s') && @shortcut.shortcut_visits.any? %>
+  <strong>Recent usage</strong>
+
+  <ul>
+    <% @shortcut.shortcut_visits.limit(10).order('created_at desc').each_with_index do |shortcut_visit, ii| %>
+      <li>
+        <%= link_to(go_url(shortcut_visit.path), go_path(shortcut_visit.path)) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

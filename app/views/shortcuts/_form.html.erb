@@ -1,12 +1,12 @@
 <p class="look_at_me">Hey, keep in mind that shortcuts and urls that you add to this site are public! Other people can see them and use them too!</p>
 
-<%= form_for(@link) do |f| %>
-  <% if @link.errors.any? %>
+<%= form_for(@shortcut) do |f| %>
+  <% if @shortcut.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@link.errors.count, "error") %> prohibited this shortcut from being saved:</h2>
+      <h2><%= pluralize(@shortcut.errors.count, "error") %> prohibited this shortcut from being saved:</h2>
 
       <ul>
-      <% @link.errors.full_messages.each do |msg| %>
+      <% @shortcut.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -23,7 +23,7 @@
   </div>
   <div id="notes_to_user"></div>
   <div class="actions">
-    <%= f.submit('Create', :id => 'link_submit') %>
+    <%= f.submit('Create', :id => 'shortcut_submit') %>
     <%= link_to 'Cancel', root_path %>
   </div>
 <% end %>
@@ -31,8 +31,8 @@
 <%= javascript_tag do %>
   var MakeClearWhatIsHappening = {
     now: function(event) {
-      var shortcut = $('link_shortcut').getValue();
-      var url = $('link_url').getValue();
+      var shortcut = $('shortcut_shortcut').getValue();
+      var url = $('shortcut_url').getValue();
       if (url === 'http://') url += '?';
       if (shortcut.empty()) shortcut = '?';
       if (url.empty()) url = '?';
@@ -42,8 +42,8 @@
 
   MakeClearWhatIsHappening.now();
 
-  $('link_shortcut').focus();
+  $('shortcut_shortcut').focus();
 
-  new Form.Element.Observer('link_shortcut', 1, MakeClearWhatIsHappening.now);
-  new Form.Element.Observer('link_url', 1, MakeClearWhatIsHappening.now);
+  new Form.Element.Observer('shortcut_shortcut', 1, MakeClearWhatIsHappening.now);
+  new Form.Element.Observer('shortcut_url', 1, MakeClearWhatIsHappening.now);
 <% end %>

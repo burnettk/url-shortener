@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :links, :dependent => :destroy
-  has_many :visited_links, :through => :link_visits, :class_name => :link
-  has_many :link_visits, :dependent => :destroy
+  has_many :shortcuts, :dependent => :destroy
+  has_many :visited_shortcuts, :through => :shortcut_visits, :class_name => :shortcut
+  has_many :shortcut_visits, :dependent => :destroy
 end

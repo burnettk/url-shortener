@@ -1,0 +1,44 @@
+<h1><%= @page_title %></h1>
+
+
+<% if @other_shortcuts.any? %>
+  <h2>Random shortcuts added by other users <%= link_to('[show all]', all_shortcuts_path) %></h2>
+  <%= render(:partial => 'shortcut_list', :locals => {:shortcuts => @other_shortcuts}) %>
+<% end %>
+
+<% more_shortcuts_avilable = @my_shortcuts.size > 5 %>
+<h2>My Shortcuts <%= link_to('[show all]', my_shortcuts_path) if more_shortcuts_avilable %></h2>
+
+<% if @my_shortcuts.any? %>
+  <table class="shortcuts">
+    <tr>
+      <th class="shortcut">Shortcut</th>
+      <th class="destination">Url</th>
+      <th class="actions">Actions</th>
+    </tr>
+
+    <% @my_shortcuts.each_with_index do |shortcut, ii| %>
+      <% next if ii == 5 %>
+      <tr>
+        <% destination = shortcut.url.include?('%s') ? nil : go_path(:path => shortcut.shortcut) %>
+        <td class="shortcut"><%= destination ? link_to(shortcut.shortcut, destination) : shortcut.shortcut %></td>
+        <td class="destination">
+          <% if destination %>
+            <%= link_to(shortcut.url, destination) %>
+          <% else %>
+            <%= shortcut.url %>
+            <% path = shortcut.shortcut_visits.first.if_hot {|lv| lv.path } %>
+            <% if path %>
+              (last used: <%= link_to(go_url(path), go_path(path)) %>)
+            <% end %>
+          <% end %>
+        </td>
+        <td class="actions"><%= link_to 'Edit', edit_shortcut_path(shortcut) %> | <%= link_to 'Delete', shortcut, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'More info', shortcut_path(shortcut) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>You haven't added any shortcuts yet. Read <%= link_to 'about this site', about_path %>.</p>
+<% end %>
+
+<%= link_to 'Add a shortcut', new_shortcut_path %>

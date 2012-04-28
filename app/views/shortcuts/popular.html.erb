@@ -1,17 +1,17 @@
 <h1><%= @page_title %></h1>
 
-<table class="links">
+<table class="shortcuts">
   <tr>
     <th class="rank">Rank</th>
     <th class="shortcut">Shortcut</th>
     <th class="destination">Url</th>
   </tr>
 
-  <% @links.each_with_index do |link, ii| %>
+  <% @shortcuts.each_with_index do |shortcut, ii| %>
     <tr>
       <td class="rank"><%= ii + 1 %></td>
-      <td class="shortcut"><%= link.shortcut %></td>
-      <td class="destination"><%= link.url %></td>
+      <td class="shortcut"><%= shortcut.shortcut %></td>
+      <td class="destination"><%= shortcut.url %></td>
     </tr>
   <% end %>
 </table>

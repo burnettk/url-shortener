@@ -11,32 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110528214117) do
-
-  create_table "link_visits", :force => true do |t|
-    t.integer  "link_id",    :null => false
-    t.integer  "user_id",    :null => false
-    t.string   "path",       :null => false
-    t.datetime "created_at"
-  end
-
-  add_index "link_visits", ["created_at"], :name => "index_link_visits_on_created_at"
-  add_index "link_visits", ["link_id"], :name => "link_visits_ibfk_link_id"
-  add_index "link_visits", ["path"], :name => "index_link_visits_on_path"
-  add_index "link_visits", ["user_id"], :name => "link_visits_ibfk_user_id"
-
-  create_table "links", :force => true do |t|
-    t.string   "shortcut",                     :null => false
-    t.string   "url",                          :null => false
-    t.boolean  "active",     :default => true, :null => false
-    t.integer  "user_id",                      :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "links", ["created_at"], :name => "index_links_on_created_at"
-  add_index "links", ["shortcut"], :name => "index_links_on_shortcut", :unique => true
-  add_index "links", ["user_id"], :name => "links_ibfk_user_id"
+ActiveRecord::Schema.define(:version => 20120408191229) do
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -47,6 +22,31 @@ ActiveRecord::Schema.define(:version => 20110528214117) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "shortcut_visits", :force => true do |t|
+    t.integer  "shortcut_id", :null => false
+    t.integer  "user_id",     :null => false
+    t.string   "path",        :null => false
+    t.datetime "created_at"
+  end
+
+  add_index "shortcut_visits", ["created_at"], :name => "index_shortcut_visits_on_created_at"
+  add_index "shortcut_visits", ["path"], :name => "index_shortcut_visits_on_path"
+  add_index "shortcut_visits", ["shortcut_id"], :name => "shortcut_visits_ibfk_shortcut_id"
+  add_index "shortcut_visits", ["user_id"], :name => "shortcut_visits_ibfk_user_id"
+
+  create_table "shortcuts", :force => true do |t|
+    t.string   "shortcut",                     :null => false
+    t.string   "url",                          :null => false
+    t.boolean  "active",     :default => true, :null => false
+    t.integer  "user_id",                      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shortcuts", ["created_at"], :name => "index_shortcuts_on_created_at"
+  add_index "shortcuts", ["shortcut"], :name => "index_shortcuts_on_shortcut", :unique => true
+  add_index "shortcuts", ["user_id"], :name => "shortcuts_ibfk_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "identifier",                  :null => false

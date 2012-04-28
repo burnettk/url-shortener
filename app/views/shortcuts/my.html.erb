@@ -1,0 +1,32 @@
+<h1><%= @page_title %></h1>
+
+<% if @my_shortcuts.any? %>
+  <table class="shortcuts">
+    <tr>
+      <th class="shortcut">Shortcut</th>
+      <th class="destination">Url</th>
+      <th class="actions">Actions</th>
+    </tr>
+
+    <% @my_shortcuts.each_with_index do |shortcut, ii| %>
+      <tr>
+        <% destination = shortcut.url.include?('%s') ? nil : go_path(:path => shortcut.shortcut) %>
+        <td class="shortcut"><%= destination ? link_to(shortcut.shortcut, destination) : shortcut.shortcut %></td>
+        <td class="destination">
+          <% if destination %>
+            <%= link_to(shortcut.url, destination) %>
+          <% else %>
+            <%= shortcut.url %>
+            <% path = shortcut.shortcut_visits.first.if_hot {|lv| lv.path } %>
+            <% if path %>
+              (last used: <%= link_to(go_url(path), go_path(path)) %>)
+            <% end %>
+          <% end %>
+        </td>
+        <td class="actions"><%= link_to 'Edit', edit_shortcut_path(shortcut) %> | <%= link_to 'Delete', shortcut, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'More info', shortcut_path(shortcut) %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<%= link_to 'Add a shortcut', new_shortcut_path %>

@@ -1,0 +1,16 @@
+<table class="shortcuts">
+  <tr>
+    <th class="shortcut">Shortcut</th>
+    <th class="destination">Url</th>
+    <th class="actions">Actions</th>
+  </tr>
+
+  <% shortcuts.each_with_index do |shortcut, ii| %>
+    <tr>
+      <% destination = shortcut.url.include?('%s') ? nil : go_path(:path => shortcut.shortcut) %>
+      <td class="shortcut"><%= destination ? link_to(shortcut.shortcut, destination) : shortcut.shortcut %></td>
+      <td class="destination"><%= destination ? link_to(shortcut.url, destination) : shortcut.url %></td>
+      <td class="actions"><%= link_to 'More info', shortcut_path(shortcut) %></td>
+    </tr>
+  <% end %>
+</table>
