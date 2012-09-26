@@ -8,9 +8,13 @@ class ShortcutsController < InheritedResources::Base
   skip_before_filter :handle_authorization, :only => :go
 
   def go
-    destination_url = Shortcut.process_path_for_user!(params[:path], find_user)
+    path = params[:path]
+    destination_url = Shortcut.process_path_for_user!(path, find_user)
     if destination_url
       redirect_to destination_url
+    elsif Namespace.shortcuts_by_namespace(path).any?
+      params[:id] = path
+      by_namespace
     else
       render_404
     end
@@ -25,6 +29,13 @@ class ShortcutsController < InheritedResources::Base
     @page_title = 'Shortcuts'
     @other_shortcuts = Shortcut.not_for_user(find_user).limit(5).order('rand()').all
     @my_shortcuts = find_user.shortcuts.order('created_at desc').limit(6).all
+  end
+
+  def by_namespace
+    namespace = params[:id]
+    @page_title = "Shortcuts in namespace: #{namespace}"
+    @shortcuts = Namespace.shortcuts_by_namespace(namespace)
+    render 'shortcut_page'
   end
 
   def all

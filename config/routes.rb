@@ -1,4 +1,5 @@
 Rs::Application.routes.draw do
+
   resources :shortcuts do
     collection do
       get :my, :path => 'mine'
@@ -7,8 +8,9 @@ Rs::Application.routes.draw do
   end
 
   root :to => 'shortcuts#index'
-  match "sign_out" => 'authentication#sign_out', :as => :sign_out
+  match 'sign_out' => 'authentication#sign_out', :as => :sign_out
   match 'popular' => 'shortcuts#popular'
+  match 'namespaces/:id' => 'shortcuts#by_namespace'
   match 'about' => 'home#about'
   match '*path' => 'shortcuts#go', :as => :go, :format => false # path can be anything, including periods
 
