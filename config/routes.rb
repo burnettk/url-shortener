@@ -7,10 +7,12 @@ Rs::Application.routes.draw do
     end
   end
 
+  resources :folders
+
   root :to => 'shortcuts#index'
   match 'sign_out' => 'authentication#sign_out', :as => :sign_out
   match 'popular' => 'shortcuts#popular'
-  match 'namespaces/:id' => 'shortcuts#by_namespace'
+  match 'folders/:id' => 'shortcuts#by_folder'
   match 'about' => 'home#about'
   match '*path' => 'shortcuts#go', :as => :go, :format => false # path can be anything, including periods
 

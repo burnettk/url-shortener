@@ -1,0 +1,26 @@
+<% more_folders_available = @folders.size > 5 %>
+<h2 title="If you add two shortcuts with the same prefix (rs/eve/plan and rs/eve/architecture, for example), a folder (eve, in this case) will automatically be created. You could then access all of your eve shortcuts by going to rs/eve.">Folders <%= link_to('[show all]', folders_path) if more_folders_available && !@show_all_folders %></h2>
+
+<% if @folders.any? %>
+  <table class="shortcuts">
+    <tr>
+      <th class="folder_name">Folder name</th>
+      <th class="shortcut_count">Shortcuts</th>
+      <th class="placeholder">&nbsp;</th>
+    </tr>
+
+    <% @folders.each_with_index do |folder, ii| %>
+      <% next if ii == 5 && !@show_all_folders %>
+      <tr>
+        <% destination = go_path(:path => folder.folder) %>
+        <td class="folder_name"><%= destination ? link_to(folder.folder, destination) : folder.folder %></td>
+        <td class="shortcut_count"><%= folder.count %></td>
+        <td class="placeholder">&nbsp;</td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>There are no folders yet. Read <%= link_to 'about this site', about_path %>.</p>
+<% end %>
+
+

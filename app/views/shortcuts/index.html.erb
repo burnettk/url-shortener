@@ -1,13 +1,8 @@
 <h1><%= @page_title %></h1>
 
 
-<% if @other_shortcuts.any? %>
-  <h2>Random shortcuts added by other users <%= link_to('[show all]', all_shortcuts_path) %></h2>
-  <%= render(:partial => 'shortcut_list', :locals => {:shortcuts => @other_shortcuts}) %>
-<% end %>
-
-<% more_shortcuts_avilable = @my_shortcuts.size > 5 %>
-<h2>My Shortcuts <%= link_to('[show all]', my_shortcuts_path) if more_shortcuts_avilable %></h2>
+<% more_shortcuts_available = @my_shortcuts.size > 5 %>
+<h2>My Shortcuts <%= link_to('[show all]', my_shortcuts_path) if more_shortcuts_available %></h2>
 
 <% if @my_shortcuts.any? %>
   <table class="shortcuts">
@@ -40,5 +35,18 @@
 <% else %>
   <p>You haven't added any shortcuts yet. Read <%= link_to 'about this site', about_path %>.</p>
 <% end %>
+
+<%####################################################### %>
+
+<% if @other_shortcuts.any? %>
+  <h2>Random shortcuts added by other users <%= link_to('[show all]', all_shortcuts_path) %></h2>
+  <%= render(:partial => 'shortcut_list', :locals => {:shortcuts => @other_shortcuts}) %>
+<% end %>
+
+<%####################################################### %>
+
+<%= render(:partial => 'shared/folder_list') %>
+
+<%####################################################### %>
 
 <%= link_to 'Add a shortcut', new_shortcut_path %>

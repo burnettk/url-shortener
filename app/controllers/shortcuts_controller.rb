@@ -12,9 +12,9 @@ class ShortcutsController < InheritedResources::Base
     destination_url = Shortcut.process_path_for_user!(path, find_user)
     if destination_url
       redirect_to destination_url
-    elsif Namespace.shortcuts_by_namespace(path).any?
+    elsif Folder.shortcuts_by_folder(path).any?
       params[:id] = path
-      by_namespace
+      by_folder
     else
       render_404
     end
@@ -29,12 +29,14 @@ class ShortcutsController < InheritedResources::Base
     @page_title = 'Shortcuts'
     @other_shortcuts = Shortcut.not_for_user(find_user).limit(5).order('rand()').all
     @my_shortcuts = find_user.shortcuts.order('created_at desc').limit(6).all
+    @show_all_folders = false
+    @folders = Shortcut.find_by_sql("select left(shortcut, instr(shortcut, '/') - 1) as folder, count(*) count from shortcuts group by folder having count > 1 and folder != '' order by count desc limit 6")
   end
 
-  def by_namespace
-    namespace = params[:id]
-    @page_title = "Shortcuts in namespace: #{namespace}"
-    @shortcuts = Namespace.shortcuts_by_namespace(namespace)
+  def by_folder
+    folder = params[:id]
+    @page_title = "Shortcuts in folder: #{folder}"
+    @shortcuts = Folder.shortcuts_by_folder(folder)
     render 'shortcut_page'
   end
 

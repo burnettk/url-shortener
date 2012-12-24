@@ -196,19 +196,19 @@ table td.rank, table th.rank {
   overflow: hidden;
 }
 
-table td.shortcut, table th.shortcut {
+table td.shortcut, table th.shortcut, table td.folder_name, table th.folder_name {
   white-space: nowrap;
   width: 20%;
   overflow: hidden;
 }
 
-table td.destination, table th.destination {
+table td.destination, table th.destination, table td.shortcut_count, table th.shortcut_count {
   white-space: nowrap;
   width: 65%;
   overflow: hidden;
 }
 
-table td.actions, table th.actions {
+table td.actions, table th.actions, table td.placeholder, table th.placeholder {
   white-space: nowrap;
   width: 15%;
 }
