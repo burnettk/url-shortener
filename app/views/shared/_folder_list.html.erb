@@ -12,8 +12,7 @@
     <% @folders.each_with_index do |folder, ii| %>
       <% next if ii == 5 && !@show_all_folders %>
       <tr>
-        <% destination = go_path(:path => folder.folder) %>
-        <td class="folder_name"><%= destination ? link_to(folder.folder, destination) : folder.folder %></td>
+        <td class="folder_name"><%= link_to(folder.folder, "/folders/#{folder.folder}") %></td>
         <td class="shortcut_count"><%= folder.count %></td>
         <td class="placeholder">&nbsp;</td>
       </tr>
