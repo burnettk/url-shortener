@@ -1,5 +1,7 @@
 class Shortcut < ActiveRecord::Base
-  belongs_to :user
+  acts_as_paranoid
+  belongs_to :created_by, :class_name => 'User', :foreign_key => 'created_by_user_id'
+  belongs_to :updated_by, :class_name => 'User', :foreign_key => 'updated_by_user_id'
   has_many :shortcut_visits, :dependent => :destroy
   has_many :users, :through => :shortcut_visits
 
@@ -10,7 +12,7 @@ class Shortcut < ActiveRecord::Base
 
   scope :wildcards, where("shortcut like '%\\%s%'")
   scope :not_for_user, lambda {|user|
-    where("user_id != :user_id", {:user_id => user.id})
+    where("created_by_user_id != :user_id", {:user_id => user.id})
   }
 
   attr_accessor :matched_segment

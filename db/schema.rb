@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120408191229) do
+ActiveRecord::Schema.define(:version => 20130309173334) do
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -36,17 +36,19 @@ ActiveRecord::Schema.define(:version => 20120408191229) do
   add_index "shortcut_visits", ["user_id"], :name => "shortcut_visits_ibfk_user_id"
 
   create_table "shortcuts", :force => true do |t|
-    t.string   "shortcut",                     :null => false
-    t.string   "url",                          :null => false
-    t.boolean  "active",     :default => true, :null => false
-    t.integer  "user_id",                      :null => false
+    t.string   "shortcut",           :null => false
+    t.string   "url",                :null => false
+    t.datetime "deleted_at"
+    t.integer  "created_by_user_id", :null => false
+    t.integer  "updated_by_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "shortcuts", ["created_at"], :name => "index_shortcuts_on_created_at"
+  add_index "shortcuts", ["created_by_user_id"], :name => "shortcuts_ibfk_created_by_user_id"
   add_index "shortcuts", ["shortcut"], :name => "index_shortcuts_on_shortcut", :unique => true
-  add_index "shortcuts", ["user_id"], :name => "shortcuts_ibfk_user_id"
+  add_index "shortcuts", ["updated_by_user_id"], :name => "shortcuts_ibfk_updated_by_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "identifier",                  :null => false

@@ -3,8 +3,6 @@ require 'addressable/uri'
 class ShortcutsController < InheritedResources::Base
 
   before_filter :set_page_title
-  before_filter :buzz_off, :only => [:update, :edit, :destroy]
-  
   skip_before_filter :handle_authorization, :only => :go
 
   def go
@@ -71,20 +69,24 @@ private
     
   def build_resource
     super
-    @shortcut.user_id = find_user.id
+    @shortcut.created_by_user_id = find_user.id if action_name == 'create'
     @shortcut
+  end
+
+  def resource
+    super
+    @shortcut.updated_by_user_id = find_user.id if @shortcut.id && @shortcut.created_by_user_id != find_user.id && %w(destroy update).include?(action_name)
+    @shortcut
+  end
+
+  def destroy_resource(object)
+    object.update_attribute(:updated_by_user_id, find_user.id) if @shortcut.id && @shortcut.created_by_user_id != find_user.id
+    super
   end
 
   def set_page_title
     prefix = %w(new edit).include?(action_name) ? action_name.titleize + " " : ""
     prefix = 'New ' if action_name == 'create'
     @page_title = prefix + "Shortcut"
-  end
-
-  def buzz_off
-    shortcut = Shortcut.find(params[:id])
-    if shortcut.user != find_user
-      render_404
-    end
   end
 end

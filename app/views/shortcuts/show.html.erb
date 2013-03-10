@@ -17,8 +17,15 @@
 
 <p>
   <b>Added by:</b>
-  <%= @shortcut.user.if_hot {|u| u.identifier } %>
+  <%= @shortcut.created_by.if_hot {|u| u.identifier } %>
 </p>
+
+<% if @shortcut.updated_by %>
+  <p>
+    <b>Most recently updated by:</b>
+    <%= @shortcut.updated_by.identifier %>
+  </p>
+<% end %>
 
 
 <% if @shortcut.url.include?('%s') && @shortcut.shortcut_visits.any? %>

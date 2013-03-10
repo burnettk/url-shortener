@@ -6,6 +6,7 @@ gem 'inherited_resources'
 gem 'rosettastone_tools', :path => 'vendor/gems/rosettastone_tools'
 gem 'rubycas-client', :path => 'vendor/gems/rubycas-client-2.2.1'
 gem 'addressable'
+gem 'acts_as_paranoid', '~>0.4.0'
 
 group :development, :test do
   gem 'factory_girl_rails'

@@ -40,6 +40,7 @@ class ShortcutsControllerTest < ActionController::TestCase
       post :create, {:shortcut => @shortcut.attributes.merge(:shortcut => 'somethingunique')}, {:rs_username => 'kburnett'}
     end
 
+    assert_equal 'kburnett', assigns(:shortcut).created_by.identifier
     assert_redirected_to root_path
   end
 
@@ -51,29 +52,49 @@ class ShortcutsControllerTest < ActionController::TestCase
   test "should get edit with correct user" do
     identifier = 'kburnett'
     user = User.find_or_create_by_identifier(identifier)
-    @shortcut.user = user
+    @shortcut.created_by = user
     @shortcut.save!
     get :edit, {:id => @shortcut.to_param}, {:rs_username => identifier}
     assert_response :success
   end
 
-  test "should get edit with wrong user" do
+  test "should get edit with another user" do
     identifier = 'kburnett'
     user = User.find_or_create_by_identifier(identifier)
-    @shortcut.update_attribute(:user_id, user.id)
+    @shortcut.update_attribute(:created_by_user_id, user.id)
     get :edit, {:id => @shortcut.to_param}, {:rs_username => 'someoneelse'}
-    assert_response 404
+    assert_response :success
   end
 
-  test "should update shortcut" do
-    put :update, {:id => @shortcut.to_param, :shortcut => @shortcut.attributes}, {:rs_username => @shortcut.user.identifier}
+  test "should update shortcut with same user" do
+    new_user = @shortcut.created_by.identifier
+    put :update, {:id => @shortcut.to_param, :shortcut => @shortcut.attributes}, {:rs_username => new_user}
+    assert_nil assigns(:shortcut).updated_by
     assert_redirected_to root_path
   end
 
+  # test "should update shortcut with different user" do
+  #   new_user = @shortcut.created_by.identifier + 'withawesome'
+  #   put :update, {:id => @shortcut.to_param, :shortcut => @shortcut.attributes.merge(:shortcut => 'hey')}, {:rs_username => new_user}
+  #   assert_equal new_user, assigns(:shortcut).reload.updated_by.identifier
+  #   assert_redirected_to root_path
+  # end
+
   test "should destroy shortcut" do
     assert_difference('Shortcut.count', -1) do
-      delete :destroy, {:id => @shortcut.to_param}, {:rs_username => @shortcut.user.identifier}
+      delete :destroy, {:id => @shortcut.to_param}, {:rs_username => @shortcut.created_by.identifier}
     end
+    assert_nil assigns(:shortcut).updated_by
+
+    assert_redirected_to shortcuts_path
+  end
+
+  test "should destroy shortcut with different user" do
+    new_user = @shortcut.created_by.identifier + 'withawesome'
+    assert_difference('Shortcut.count', -1) do
+      delete :destroy, {:id => @shortcut.to_param}, {:rs_username => new_user}
+    end
+    assert_equal new_user, assigns(:shortcut).updated_by.identifier
 
     assert_redirected_to shortcuts_path
   end

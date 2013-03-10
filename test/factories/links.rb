@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :shortcut do
     shortcut "MyString"
     url "http://mystring"
-    association :user, :factory => :user
+    association :created_by, :factory => :user
   end
 end
