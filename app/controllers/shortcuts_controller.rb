@@ -28,7 +28,7 @@ class ShortcutsController < InheritedResources::Base
     @other_shortcuts = Shortcut.not_for_user(find_user).limit(5).order('rand()').all
     @my_shortcuts = find_user.shortcuts.order('created_at desc').limit(6).all
     @show_all_folders = false
-    @folders = Shortcut.find_by_sql("select left(shortcut, instr(shortcut, '/') - 1) as folder, count(*) count from shortcuts group by folder having count > 1 and folder != '' order by count desc limit 6")
+    @folders = Shortcut.find_by_sql("select left(shortcut, instr(shortcut, '/') - 1) as folder, count(*) count from shortcuts where deleted_at is null group by folder having count > 1 and folder != '' order by count desc limit 6")
   end
 
   def by_folder
