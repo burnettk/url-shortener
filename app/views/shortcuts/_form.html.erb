@@ -31,19 +31,20 @@
 <%= javascript_tag do %>
   var MakeClearWhatIsHappening = {
     now: function(event) {
-      var shortcut = $('shortcut_shortcut').getValue();
-      var url = $('shortcut_url').getValue();
+      var shortcut = $('#shortcut_shortcut').val();
+      var url = $('#shortcut_url').val();
       if (url === 'http://') url += '?';
-      if (shortcut.empty()) shortcut = '?';
-      if (url.empty()) url = '?';
-      $('notes_to_user').update("When you go to <strong><%= App.programmatic_name %>/" + shortcut + "</strong> in your browser, you will be taken to <strong>" + url + "</strong>");
+      if (shortcut.length == 0) shortcut = '?';
+      if (url.length == 0) url = '?';
+      $('#notes_to_user').html("When you go to <strong><%= App.programmatic_name %>/" + shortcut + "</strong> in your browser, you will be taken to <strong>" + url + "</strong>");
     }
   }
 
   MakeClearWhatIsHappening.now();
 
-  $('shortcut_shortcut').focus();
+  $('#shortcut_shortcut').focus();
 
-  new Form.Element.Observer('shortcut_shortcut', 1, MakeClearWhatIsHappening.now);
-  new Form.Element.Observer('shortcut_url', 1, MakeClearWhatIsHappening.now);
+  $('#shortcut_shortcut').on('keyup', MakeClearWhatIsHappening.now);
+  $('#shortcut_url').on('keyup', MakeClearWhatIsHappening.now);
 <% end %>
+

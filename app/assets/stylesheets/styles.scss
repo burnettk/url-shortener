@@ -3,11 +3,11 @@ html, body {
 }
 
 html {
-  background: url("/images/bg.jpg") repeat-x scroll 0 0 #E7B220;
+  background: image-url("bg.jpg") repeat-x scroll 0 0 #E7B220;
 }
 
 body {
-  background: url("/images/multibg.jpg") no-repeat scroll center top transparent;
+  background: image-url("multibg.jpg") no-repeat scroll center top transparent;
   color: #333;
   font: 75%/1.4em Arial, Tahoma, Verdana, Geneva, Helvetica, sans-serif;
 }
@@ -22,7 +22,7 @@ dl[title],span[title],img[title],div[title],td[title],th[title],h2[title] {
 }
 
 #header {
-  background: url("/images/headbar.png") no-repeat scroll center top transparent;
+  background: image-url("headbar.png") no-repeat scroll center top transparent;
   color: #fff;
   padding: 15px 6px 0 6px;
 }
@@ -186,7 +186,7 @@ tbody tr:nth-child(even) { background-color: #eee; }
 table.shortcuts {
   table-layout: fixed;
   /*width: 920px; */
-  width:100%
+  width:100%;
   white-space: nowrap;
 }
 

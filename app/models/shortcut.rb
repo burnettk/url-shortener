@@ -16,6 +16,7 @@ class Shortcut < ActiveRecord::Base
   }
 
   attr_accessor :matched_segment
+  attr_accessible :url, :shortcut
 
   class << self
 
