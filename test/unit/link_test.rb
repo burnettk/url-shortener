@@ -44,13 +44,13 @@ class ShortcutTest < ActiveSupport::TestCase
 
   test "shortcuts must not contain spaces" do
     shortcut = FactoryGirl.build(:shortcut, :shortcut => 'j %s', :url => 'http://jazz/%s', :created_by => @user)
-    assert_false shortcut.valid?
+    assert_equal false, shortcut.valid?
     assert_equal 'Shortcut must not contain spaces', shortcut.errors.full_messages.first
   end
 
   test "shortcuts must have at least one character and one slash before a wildcard" do
     shortcut = FactoryGirl.build(:shortcut, :shortcut => 'wi%s', :url => 'http://jazz/%s', :created_by => @user)
-    assert_false shortcut.valid?
+    assert_equal false, shortcut.valid?
     assert_match /must have at least one character and one slash/, shortcut.errors.full_messages.first
   end
 

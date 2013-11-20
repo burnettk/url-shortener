@@ -17,7 +17,7 @@
 
 <p>
   <b>Added by:</b>
-  <%= @shortcut.created_by.if_hot {|u| u.identifier } %>
+  <%= @shortcut.created_by.try(:identifier) %>
 </p>
 
 <% if @shortcut.updated_by %>

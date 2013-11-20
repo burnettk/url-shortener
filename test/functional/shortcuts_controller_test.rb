@@ -37,7 +37,7 @@ class ShortcutsControllerTest < ActionController::TestCase
 
   test "should create shortcut" do
     assert_difference('Shortcut.count') do
-      post :create, {:shortcut => @shortcut.attributes.only(:url, :shortcut).merge(:shortcut => 'somethingunique')}, {:rs_username => 'kburnett'}
+      post :create, {:shortcut => {:url => @shortcut.url, :shortcut => 'somethingunique'}}, {:rs_username => 'kburnett'}
     end
 
     assert_equal 'kburnett', assigns(:shortcut).created_by.identifier
@@ -68,7 +68,7 @@ class ShortcutsControllerTest < ActionController::TestCase
 
   test "should update shortcut with same user" do
     new_user = @shortcut.created_by.identifier
-    put :update, {:id => @shortcut.to_param, :shortcut => @shortcut.attributes.only(:url, :shortcut)}, {:rs_username => new_user}
+    put :update, {:id => @shortcut.to_param, :shortcut => {:url => @shortcut.url, :shortcut => @shortcut.url}}, {:rs_username => new_user}
     assert_nil assigns(:shortcut).updated_by
     assert_redirected_to root_path
   end
