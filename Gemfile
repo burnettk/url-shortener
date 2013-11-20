@@ -4,7 +4,7 @@ gem 'rails'
 gem 'mysql2'
 gem 'inherited_resources'
 gem 'rosettastone_tools', :path => 'vendor/gems/rosettastone_tools'
-gem 'rubycas-client', :path => 'vendor/gems/rubycas-client-2.2.1'
+gem 'rubycas-client'
 gem 'addressable'
 gem 'acts_as_paranoid', '~>0.4.0'
 
