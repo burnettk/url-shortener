@@ -1,97 +1,3 @@
-html, body {
-  height: 100%;
-}
-
-html {
-  background: image-url("bg.jpg") repeat-x scroll 0 0 #E7B220;
-}
-
-body {
-  background: image-url("multibg.jpg") no-repeat scroll center top transparent;
-  color: #333;
-  font: 75%/1.4em Arial, Tahoma, Verdana, Geneva, Helvetica, sans-serif;
-}
-
-#body_wrapper {
-  width: 960px;
-  margin: 0 auto;
-}
-
-dl[title],span[title],img[title],div[title],td[title],th[title],h2[title] {
-  cursor: help;
-}
-
-#header {
-  background: image-url("headbar.png") no-repeat scroll center top transparent;
-  color: #fff;
-  padding: 15px 6px 0 6px;
-}
-
-#header h1 {
-  float: left;
-  padding-top: 7px;
-}
-
-#header .logo {
-  float: right;
-}
-
-#utility  {
-  clear: both;
-  padding: 0 6px 2px 6px;
-  margin-bottom: 3px;
-}
-
-
-#utility .sign_out {
-  float: right;
-  margin-bottom: 3px;
-  margin-right: 5px;
-}
-
-#container {
-  clear: both;
-  padding: 6px 12px;
-  margin: 0 6px;
-  background-color: #fbeb99; /* IE */
-  background-color: rgba(250, 242, 215, 0.5);
-  border: 1px solid #757;
-  border-color: rgba(30, 0, 30, 0.25);
-  -moz-border-radius: 8px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  text-align: left;
-  -moz-box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.15);
-  -webkit-box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.15);
-  box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.15);
-}
-
-a { text-decoration: underline; color: #0188c0; }
-a:visited { color: #2F251E; }
-a:hover { color: #4ba6dd;}
-
-h1 {
-  font: 2.2em/2.2em Arial, Georgia, Times, "Times New Roman", serif;
-  color: #111;
-  text-shadow: 0.05em 0.05em 0.2em rgba(16, 16, 16, 0.25);
-}
-
-h2 {
-  font: 1.6em/1.6em Arial, Georgia, Times, "Times New Roman", serif;
-  color: #333;
-  margin: 2px 0;
-  text-shadow: 0.1em 0.1em 0.2em rgba(60, 60, 60, 0.2);
-}
-h3 {
-  font-weight: bold;
-  margin-bottom: 4px;
-  text-shadow: 0.1em 0.1em 0.3em rgba(50, 50, 50, 0.25);
-  color: #444;
-}
-h4 { font-style: italic; }
-
-p { margin-bottom: 10px; }
-
 .flash {
   background: #fff;
   border: 1px solid #d00;
@@ -124,42 +30,6 @@ p { margin-bottom: 10px; }
   border-top: 1px solid rgba(40, 40, 40, 0.15);
 }
 
-strong { font-weight: bold; }
-
-#notice_indicator {
-  float: right;
-  margin: 10px 10px;
-}
-
-#notice_indicator .no_notices {
-  -moz-border-radius: 12px;
-  -webkit-border-radius: 12px;
-  border-radius: 12px;
-  -moz-box-shadow: 2px 2px 5px rgba(20, 20, 20, 0.1);
-  -webkit-box-shadow: 2px 2px 5px rgba(20, 20, 20, 0.1);
-  box-shadow: 2px 2px 5px rgba(20, 20, 20, 0.1);
-  border-width: 1px;
-  border-style: solid;
-  background-color: #6ec563; /* for browsers that don't get gradients */
-  background: -moz-linear-gradient(center top, rgba(110, 197, 99, 0.9), rgba(110, 197, 99, 0.5) 40%, #6EC563);
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(110, 197, 99, 0.9)), to(#6EC563), color-stop(0.4, rgba(110, 197, 99, 0.5)));
-  border-color: #599f50;
-  width: 12px;
-  height: 12px;
-}
-
-#notices {
-  clear: both;
-}
-.submit { margin-left: 5px; }
-
-#main, #sidebar {
-  float: left;
-}
-#main {
-  width: 80%;
-}
-
 table {
   text-align: left;
   border: 1px solid #bbb;
@@ -185,7 +55,6 @@ tbody tr:nth-child(even) { background-color: #eee; }
 
 table.shortcuts {
   table-layout: fixed;
-  /*width: 920px; */
   width:100%;
   white-space: nowrap;
 }
@@ -226,14 +95,4 @@ th { font-weight: bold; white-space: nowrap; }
   -moz-box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.1);
   -webkit-box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.1);
   box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.1);
-}
-
-ul {
-  list-style-type: disc; 
-  list-style-position: inside;
-  margin-bottom: 12px;
-}
-
-ul li {
-  margin-left: 12px;
 }

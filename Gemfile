@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 gem 'rails'
 gem 'mysql2'
 gem 'inherited_resources'
-#gem 'rosettastone_tools', :path => 'vendor/gems/rosettastone_tools'
 gem 'rubycas-client'
 gem 'addressable'
 gem 'acts_as_paranoid', '~>0.4.0'
@@ -22,4 +21,6 @@ group :assets do
   gem 'uglifier'
   gem 'jquery-rails'
   gem 'therubyracer'
+  gem 'compass-rails' # you need this or you get an err
+  gem 'zurb-foundation', '~> 4.0.0'
 end

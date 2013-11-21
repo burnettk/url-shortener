@@ -1,34 +1,46 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title><%= page_title %></title>
-  <link href="/favicon.ico" rel="shortcut icon" type="image/ico" />
-  <%= stylesheet_link_tag "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-  <div id="body_wrapper">
-    <div class="noprint">
-      <div id="header">
-        <% if false %><h1><%= link_to(App.programmatic_name, root_url) %></h1><% end %>
-        <h1><%= link_to(image_tag('under_construction.gif'), root_url) %></h1>
-        <%= image_tag('rosettastone.png', :class => 'logo', :alt => 'Rosetta Stone') %>
-      </div>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+  <head>
+  	<meta charset="utf-8" />
 
-      <div id="utility">
-        <%= link_to "Sign out", sign_out_path, :class => "sign_out" %>
-      </div>
-    </div><%# class "noprint" -%>
-    <div id="container">
-      <%# render :partial => 'shared/flash_area' -%>
+  	<!-- Uncomment to make IE8 render like IE7 -->
+  	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+
+  	<!-- Set the viewport width to device width for mobile -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= page_title %></title>
+
+  	<%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+  <%= render :partial => 'shared/nav' %>
+
+  <div class="row">
+    <div class="large-1 columns"></div>
+    <div class="large-10 columns">
       <%= yield %>
     </div>
-    <div class="noprint">
-      <div id="footer">
-        <p><%= App.programmatic_name %> &copy; <%= Time.now.year %> <%= COMPANY_NAME %>. <%= link_to 'About this site', about_url %>. <%= mail_to CONTACT_EMAIL, 'Feedback' %>.</p>
+    <div class="large-1 columns"></div>
+  </div>
+
+  <div class="noprint">
+    <div class="row">
+      <div class="large-12 columns">
+        <div id="footer">
+          <p><%= App.programmatic_name %> &copy; <%= Time.now.year %> <%= COMPANY_NAME %>. <%= mail_to CONTACT_EMAIL, 'Feedback' %>.</p>
+        </div>
       </div>
-    </div><%# class "noprint" -%>
-  </div><%# body_wrapper -%>
-</body>
+  </div>
+
+  <%= javascript_include_tag "application" %>
+  </body>
 </html>

@@ -1,5 +1,6 @@
 <h1><%= @page_title %></h1>
 
+<hr />
 
 <% more_shortcuts_available = @my_shortcuts.size > 5 %>
 <h2>My Shortcuts <%= link_to('[show all]', my_shortcuts_path) if more_shortcuts_available %></h2>
@@ -47,6 +48,4 @@
 
 <%= render(:partial => 'shared/folder_list') %>
 
-<%####################################################### %>
-
-<%= link_to 'Add a shortcut', new_shortcut_path %>
+<%= link_to 'Add a shortcut', new_shortcut_path, :class => 'button' %>

@@ -1,5 +1,9 @@
 <h1><%= @page_title %></h1>
 
+<hr />
+
+<%= link_to 'Add a shortcut', new_shortcut_path, :class => 'button' %>
+
 <% if @my_shortcuts.any? %>
   <table class="shortcuts">
     <tr>
@@ -28,5 +32,3 @@
     <% end %>
   </table>
 <% end %>
-
-<%= link_to 'Add a shortcut', new_shortcut_path %>
