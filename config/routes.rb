@@ -1,4 +1,4 @@
-Rs::Application.routes.draw do
+Shortener::Application.routes.draw do
 
   resources :shortcuts do
     collection do

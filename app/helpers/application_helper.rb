@@ -1,6 +1,6 @@
 module ApplicationHelper
   def page_title
-    "#{@page_title || controller.controller_name.humanize.titleize} - #{App.programmatic_name}"
+    "#{@page_title || controller.controller_name.humanize.titleize} - #{Shortener::Application.config.site_name}"
   end
   
   def body_id

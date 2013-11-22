@@ -36,7 +36,7 @@
     <div class="row">
       <div class="large-12 columns">
         <div id="footer">
-          <p><%= App.programmatic_name %> &copy; <%= Time.now.year %> <%= COMPANY_NAME %>. <%= mail_to CONTACT_EMAIL, 'Feedback' %>.</p>
+          <p><%= mail_to Shortener::Application.config.contact_email, Shortener::Application.config.site_name + ' site feedback' %></p>
         </div>
       </div>
   </div>

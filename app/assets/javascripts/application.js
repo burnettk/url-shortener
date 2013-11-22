@@ -5,7 +5,7 @@
 
 $(document).foundation();
 
-if ('#shortcut_shortcut') {
+if ($('#shortcut_shortcut').length > 0) {
 	var MakeClearWhatIsHappening = {
 	now: function(event) {
 	  var shortcut = $('#shortcut_shortcut').val();

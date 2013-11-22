@@ -14,9 +14,9 @@ private
   end
 
   def set_rs_from_casfilteruser
-    return if session[:rs_username]
+    return if session[:authenticated_username]
     if user_name = session[:casfilteruser]
-      session[:rs_username] = user_name
+      session[:authenticated_username] = user_name
     end
   end
 end
