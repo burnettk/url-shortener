@@ -1,9 +1,9 @@
-<p class="look_at_me">Hey, keep in mind that shortcuts and urls that you add to this site are public! Other people can see them and use them too!</p>
+<p class="panel callout">Hey: keep in mind that shortcuts and urls that you add to this site are public! Other people can see them and use them too!</p>
 
 <%= form_for(@shortcut) do |f| %>
   <% if @shortcut.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@shortcut.errors.count, "error") %> prohibited this shortcut from being saved:</h2>
+      <h3><%= pluralize(@shortcut.errors.count, "error") %> prohibited this shortcut from being saved:</h3>
 
       <ul>
       <% @shortcut.errors.full_messages.each do |msg| %>
@@ -21,30 +21,11 @@
     <%= f.label :url %>
     <%= f.text_field :url %>
   </div>
-  <div id="notes_to_user"></div>
+
+  <span id="notes_to_user" class="label round secondary"></span>
+
   <div class="actions">
-    <%= f.submit(button_text, :id => 'shortcut_submit') %>
+    <%= f.submit(button_text, :id => 'shortcut_submit', :class => 'button') %>
     <%= link_to 'Cancel', root_path %>
   </div>
 <% end %>
-
-<%= javascript_tag do %>
-  var MakeClearWhatIsHappening = {
-    now: function(event) {
-      var shortcut = $('#shortcut_shortcut').val();
-      var url = $('#shortcut_url').val();
-      if (url === 'http://') url += '?';
-      if (shortcut.length == 0) shortcut = '?';
-      if (url.length == 0) url = '?';
-      $('#notes_to_user').html("When you go to <strong><%= App.programmatic_name %>/" + shortcut + "</strong> in your browser, you will be taken to <strong>" + url + "</strong>");
-    }
-  }
-
-  MakeClearWhatIsHappening.now();
-
-  $('#shortcut_shortcut').focus();
-
-  $('#shortcut_shortcut').on('keyup', MakeClearWhatIsHappening.now);
-  $('#shortcut_url').on('keyup', MakeClearWhatIsHappening.now);
-<% end %>
-

@@ -1,5 +1,5 @@
 <% more_folders_available = @folders.size > 5 %>
-<h2 title="If you add two shortcuts with the same prefix (rs/eve/plan and rs/eve/architecture, for example), a folder (eve, in this case) will automatically be created. You could then access all of your eve shortcuts by going to rs/eve.">Folders <%= link_to('[show all]', folders_path) if more_folders_available && !@show_all_folders %></h2>
+<h3 title="If you add two shortcuts with the same prefix (rs/eve/plan and rs/eve/architecture, for example), a folder (eve, in this case) will automatically be created. You could then access all of your eve shortcuts by going to rs/eve.">Folders <%= link_to('[show all]', folders_path) if more_folders_available && !@show_all_folders %></h3>
 
 <% if @folders.any? %>
   <table class="shortcuts">
