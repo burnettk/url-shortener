@@ -13,6 +13,9 @@ class Cas
 
     def load_config
       self.cas_settings = YAML::load_file(Rails.root.join('config', 'cas.defaults.yml'))
+      overrides = nil
+      overrides = YAML::load_file(Rails.root.join('config', 'cas.yml')) rescue nil
+      self.cas_settings = overrides if overrides
       CASClient::Frameworks::Rails::Filter.configure(
         :cas_base_url => cas_settings['base_url'],
         :http_proxy => cas_settings['http_proxy']

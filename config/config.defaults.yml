@@ -1,0 +1,9 @@
+# used in page titles, on the about page, etc.
+site_name: URL Shortener
+
+# users are directed to contact this address with questions about the site
+contact_email: email@example.com
+
+# if you would like to include organization-specific content on the about page, include html here, like so:
+# extra_about_page_html: <h3>Thank you</h3><p>Thanks for using the site!</p>
+extra_about_page_html: ~

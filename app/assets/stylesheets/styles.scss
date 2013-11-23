@@ -45,7 +45,6 @@ table {
   box-shadow: 2px 2px 7px rgba(20, 20, 20, 0.2);
 }
 table thead { background-color: #f0ecea; }
-table caption { font: 1.2em/1.2em Georgia, Times, "Times New Roman", serif; color: #333; margin: 10px 0 5px 0; }
 table td, table th { padding: 4px 5px 5px 5px; }
 table td.disabled { background: #e0e0e0; }
 table td.default { background: #99ccff; }
@@ -54,8 +53,6 @@ table td { border-top: 1px solid #ddd; }
 tbody tr:nth-child(even) { background-color: #eee; }
 
 table.shortcuts {
-  table-layout: fixed;
-  width:100%;
   white-space: nowrap;
 }
 

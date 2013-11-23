@@ -69,8 +69,8 @@ module Shortener
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    @params = YAML.load_file Rails.root.join('config', 'config.yml')
+    @params = YAML.load_file Rails.root.join('config', 'config.defaults.yml')
+    @params = YAML.load_file Rails.root.join('config', 'config.yml') rescue nil # this file isn't strictly necessary
     @params.each { |key, value| config.send "#{key}=", value }
-
   end
 end
