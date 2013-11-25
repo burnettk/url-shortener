@@ -24,3 +24,7 @@ group :assets do
   gem 'compass-rails' # you need this or you get an err
   gem 'zurb-foundation', '~> 4.0.0'
 end
+
+group :deployment do
+  gem 'capistrano', '~> 2.13.5'
+end
