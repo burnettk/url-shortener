@@ -53,12 +53,14 @@ table td { border-top: 1px solid #ddd; }
 tbody tr:nth-child(even) { background-color: #eee; }
 
 table.shortcuts {
+  table-layout: fixed;
+  width:100%;
   white-space: nowrap;
 }
 
 table td.rank, table th.rank {
   white-space: nowrap;
-  width: 15%;
+  width: 20%;
   overflow: hidden;
 }
 
@@ -70,13 +72,13 @@ table td.shortcut, table th.shortcut, table td.folder_name, table th.folder_name
 
 table td.destination, table th.destination, table td.shortcut_count, table th.shortcut_count {
   white-space: nowrap;
-  width: 65%;
+  width: 60%;
   overflow: hidden;
 }
 
 table td.actions, table th.actions, table td.placeholder, table th.placeholder {
   white-space: nowrap;
-  width: 15%;
+  width: 20%;
 }
 
 th { font-weight: bold; white-space: nowrap; }
