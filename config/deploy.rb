@@ -1,10 +1,15 @@
 require 'bundler/capistrano'
 
 # if there's any deployment-related config you don't want in version control, put it in here
-require 'config/deploy_secrets' rescue nil
+begin
+  load 'config/deploy_secrets'
+rescue LoadError
+  puts '[RAILS_ROOT]/config/deploy_secrets.rb did not exist. This is fine, though if you want to override any cap configs, put your configs in there.'
+end
 
 # if you haven't set the application name, it will default to url-shortener
-set :application, fetch(:application, 'url-shorter')
+# actually, won't work until i upgrade this to cap 3. use deploy_secrets.rb to specify "optional" attributes.
+set :application, fetch(:application, 'url-shortener')
 
 set :user, 'deploy'
 
