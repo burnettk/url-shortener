@@ -1,4 +1,4 @@
-enabled: true 
+enabled: true
 base_url: "https://cas.example.com/"
 http_proxy: ~
 force_ssl_verification: false

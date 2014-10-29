@@ -12,7 +12,7 @@ If this isn't exactly what you're looking for, others have done similar things, 
 
 ### Rails
 
-It's a Ruby on Rails app. Check out the [.ruby-version file](.ruby-version) for the currently-supported version of ruby and the [Gemfile.lock file](Gemfile.lock) for the version of Rails, if that might be a dealbreaker.
+It's a Ruby on Rails app. Check out the [.ruby-version file](.ruby-version) for the currently-supported version of ruby and the [Gemfile.lock file](Gemfile.lock) for the version of Rails, if that might be a dealbreaker for your environment.
 
 [Follow this](http://railsapps.github.io/installrubyonrails-mac.html) or a similar walkthrough to get ready to run a Rails app and MySQL on a mac.
 
@@ -20,7 +20,7 @@ It's a Ruby on Rails app. Check out the [.ruby-version file](.ruby-version) for 
 
 You will need a working [Central Authentication Service (CAS)](http://en.wikipedia.org/wiki/Central_Authentication_Service) available to use the code as written. You could also update the code to handle any authentication system you wanted. If you write some nice generalized code, or incorporate [devise](https://github.com/plataformatec/devise) or something, please do send a pull request.
 
-### Then do this:
+### Then do this to set up a development environment:
 
  * `git clone https://github.com/burnettk/url-shortener.git`
  * `cd url-shortener`
@@ -34,4 +34,4 @@ You will need a working [Central Authentication Service (CAS)](http://en.wikiped
  * `bundle exec rake db:setup`
  * `bundle exec rails server`
 
- Instructions for deploying the app to a more productionized environment are beyond the scope of this document, but [google it](https://www.google.com/search?q=deploy+rails+app) or [check out the docs the Rails site](http://rubyonrails.org/deploy).
+ The configs I use when running `bundle exec cap deploy` to deploy the app onto an ubuntu box running passenger are found in config/deploy.rb. Instructions for setting up a production-like deployment environment are beyond the scope of this document, but [google it](https://www.google.com/search?q=deploy+rails+app) or [check out the docs on the Rails site](http://rubyonrails.org/deploy).
