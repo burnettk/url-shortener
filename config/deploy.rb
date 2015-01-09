@@ -1,25 +1,21 @@
 require 'bundler/capistrano'
 
-# if there's any deployment-related config you don't want in version control, put it in here
-begin
-  load 'config/deploy_secrets'
-rescue LoadError
-  puts '[RAILS_ROOT]/config/deploy_secrets.rb did not exist. This is fine, though if you want to override any cap configs, put your configs in there.'
-end
-
 # if you haven't set the application name, it will default to url-shortener
-# actually, won't work until i upgrade this to cap 3. use deploy_secrets.rb to specify "optional" attributes.
-set :application, fetch(:application, 'url-shortener')
+if !exists?(:application)
+  set :application, 'url-shortener'
+end
 
 set :user, 'deploy'
 
-set :deploy_to, "/usr/website/#{application}"
+set(:deploy_to) { "/usr/website/#{fetch(:application)}" }
 set :use_sudo, false
 
 set :scm, :git
 
 # if you haven't set the repository, it will default to the github address
-set :repository,  fetch(:repository, "git@github.com:burnettk/url-shortener.git")
+if !exists?(:repository)
+  set :repository, 'git@github.com:burnettk/url-shortener.git'
+end
 
 set :branch, 'master'
 set :deploy_via, :remote_cache
@@ -48,3 +44,10 @@ end
 after 'deploy:setup', 'deploy:create_shared_config'
 after 'deploy:finalize_update', 'deploy:symlink_shared_config_files'
 after 'deploy:finalize_update', 'deploy:migrate'
+
+# if there's any deployment-related config you don't want in version control, put it in here
+begin
+  load 'config/deploy_secrets'
+rescue LoadError
+  puts '[RAILS_ROOT]/config/deploy_secrets.rb did not exist. This is fine, though if you want to override any cap configs, put your configs in there.'
+end
