@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails'
+gem 'rails', '3.2.21'
 gem 'mysql2'
 gem 'inherited_resources'
 gem 'rubycas-client'
