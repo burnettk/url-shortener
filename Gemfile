@@ -22,7 +22,7 @@ group :assets do
   gem 'jquery-rails'
   gem 'therubyracer'
   gem 'compass-rails' # you need this or you get an err
-  gem 'zurb-foundation', '~> 4.0.0'
+  gem 'zurb-foundation'
 end
 
 group :deployment do
