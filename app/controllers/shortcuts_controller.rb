@@ -7,11 +7,11 @@ class ShortcutsController < InheritedResources::Base
 
   def go
     path = params[:path]
-    destination_url = Shortcut.process_path_for_user!(path, find_user)
-    if destination_url
-      redirect_to destination_url
-    elsif Folder.shortcuts_by_folder(path).any?
-      params[:id] = path
+    result = Shortcut.process_path_for_user!(path, find_user)
+    if result[:url]
+      redirect_to result[:url]
+    elsif result[:folder]
+      params[:id] = result[:folder]
       by_folder
     else
       render_404

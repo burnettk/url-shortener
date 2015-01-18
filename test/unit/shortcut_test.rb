@@ -17,7 +17,7 @@ class ShortcutTest < ActiveSupport::TestCase
     assert_equal "Shortcut must not be a single slash", shortcut.errors.full_messages.first
   end
   
-  test "find_by_path" do
+  test "process_path_for_user!" do
     shortcut = FactoryGirl.create(:shortcut, :shortcut => 'j', :url => 'http://jazz', :created_by => @user)
     shortcut = FactoryGirl.create(:shortcut, :shortcut => 'j/%s', :url => 'http://jazz/workitem/%s', :created_by => @user)
     assert_finds_url('http://jazz', 'j', @user)
@@ -56,11 +56,8 @@ class ShortcutTest < ActiveSupport::TestCase
 
 private
   def assert_finds_url(expected_url, path, user)
-    assert_not_nil(shortcut = Shortcut.find_by_path(path))
-      assert_equal(expected_url, shortcut.generated_url)
-    
     assert_difference('user.shortcut_visits.count') do
-      assert_equal(expected_url, Shortcut.process_path_for_user!(path, user))
+      assert_equal({:url => expected_url}, Shortcut.process_path_for_user!(path, user))
     end
   end
 end

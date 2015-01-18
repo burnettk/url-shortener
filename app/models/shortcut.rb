@@ -21,15 +21,29 @@ class Shortcut < ActiveRecord::Base
   class << self
 
     def process_path_for_user!(path, user)
-      if shortcut = find_by_path(path)
-        user.shortcut_visits.create(:shortcut => shortcut, :path => path)
-        shortcut.generated_url
+      if shortcut = find_exact_match_by_path(path)
+        found_it(user, shortcut, path)
+      elsif Folder.shortcuts_by_folder(path).any?
+        {:folder => path}
+      elsif shortcut = find_wildcard_by_path(path)
+        found_it(user, shortcut, path)
+      else
+        {}
       end
     end
 
+    def found_it(user, shortcut, path)
+      user.shortcut_visits.create(:shortcut => shortcut, :path => path)
+      {:url => shortcut.generated_url}
+    end
+
     # nice and scalable
-    def find_by_path(path)
-      where(['shortcut = ?', path]).first || Shortcut.wildcards.detect {|l| l.matches?(path) }
+    def find_exact_match_by_path(path)
+      where(['shortcut = ?', path]).first
+    end
+
+    def find_wildcard_by_path(path)
+      Shortcut.wildcards.detect {|l| l.matches?(path) }
     end
 
   end
