@@ -4,6 +4,8 @@
 
 <p>The purpose of the <strong><%= Shortener::Application.config.site_name %></strong> site is to help you <strong>get to</strong> and <strong>share</strong> websites, especially on the intranet, quickly and easily. You might think of it as a cross between <%= link_to *(['http://bit.ly'] * 2) %> and <%= link_to 'Firefox keywords', 'http://support.mozilla.com/en-US/kb/Smart%20keywords' %> (you can use %s substitutions, just like Firefox keywords).</p>
 
+<p>If you add multiple shortcuts with the same path prefix, like cool/thing1 and cool/thing2, you will be able to find all of your cool things under the automatically-created "cool" folder.</p>
+
 <p>Once you add shortcuts, you--and everyone else--will be able to get to them from the <%= link_to 'main page', root_url %>. In fact, you can add shortcuts from there too, so <%= link_to 'go to the main page', root_url %>.
 
 <%= Shortener::Application.config.extra_about_page_html.html_safe %>

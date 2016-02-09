@@ -39,6 +39,35 @@ Shortener::Application.configure do
   # Use a different logger for distributed setups
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
+  config.logger = Logger.new(STDOUT)
+
+  # Ensuring logs get printed out in a more realtime way so we don't
+  # have to wait for 50 requests to see them in the logs
+  STDOUT.sync = true
+
+  # Somehow logger.level seems to be getting set to DEBUG so forcing it to be INFO here
+  config.logger.level = ActiveSupport::BufferedLogger.const_get(config.log_level.to_s.upcase)
+
+  # one-liner logging
+  config.lograge.enabled = true
+
+  # lograge also allows for disabling logs on a per-action basis, like our load balancer ping
+  config.lograge.ignore_actions = ['keepalive#index']
+
+  config.lograge.formatter = Lograge::Formatters::Json.new
+
+  # also include the params and request_id in logging
+  config.lograge.custom_options = lambda do |event|
+    params = event.payload[:params].reject do |k|
+      %w(controller action format).include? k
+    end
+
+    {
+      params: params,
+      request_id: event.payload[:request_id]
+    }
+  end
+
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
 

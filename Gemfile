@@ -6,6 +6,8 @@ gem 'inherited_resources'
 gem 'rubycas-client'
 gem 'addressable'
 gem 'acts_as_paranoid', '~>0.4.0'
+gem 'lograge'
+gem 'unicorn'
 
 group :development, :test do
   gem 'factory_girl_rails'
@@ -20,7 +22,6 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'jquery-rails'
-  gem 'therubyracer'
   gem 'compass-rails' # you need this or you get an err
   gem 'zurb-foundation'
 end
