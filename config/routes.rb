@@ -7,14 +7,14 @@ Shortener::Application.routes.draw do
     end
   end
 
-  match 'folders/:id' => 'shortcuts#by_folder'
+  get 'folders/:id' => 'shortcuts#by_folder'
   resources :folders
 
   root :to => 'shortcuts#index'
-  match 'sign_out' => 'authentication#sign_out', :as => :sign_out
-  match 'popular' => 'shortcuts#popular'
-  match 'about' => 'home#about'
-  match '*path' => 'shortcuts#go', :as => :go, :format => false # path can be anything, including periods
+  match 'sign_out' => 'authentication#sign_out', :as => :sign_out, via: [:get, :post]
+  get 'popular' => 'shortcuts#popular'
+  get 'about' => 'home#about'
+  get '*path' => 'shortcuts#go', :as => :go, :format => false # path can be anything, including periods
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

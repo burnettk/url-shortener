@@ -8,9 +8,11 @@ class Shortcut < ActiveRecord::Base
   validates_uniqueness_of :shortcut
   validates_presence_of :shortcut
   validate :validate_format_of_shortcut
-  validates_format_of :url, :with => /^http/, :message => 'must start with http'
+  validates_format_of :url, :with => /\Ahttp/, :message => 'must start with http'
 
-  scope :wildcards, where("shortcut like '%\\%s%'")
+  scope :wildcards, -> {
+    where("shortcut like '%\\%s%'")
+  }
   scope :not_for_user, lambda {|user|
     where("created_by_user_id != :user_id", {:user_id => user.id})
   }

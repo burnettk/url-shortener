@@ -1,30 +1,23 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.21'
+gem 'rails'
 gem 'mysql2'
-gem 'inherited_resources'
 gem 'rubycas-client'
 gem 'addressable'
-gem 'acts_as_paranoid', '~>0.4.0'
+gem 'paranoia', '2.1.5'
 gem 'lograge'
 gem 'unicorn'
+gem 'activerecord-session_store'
+gem 'inherited_resources'
+gem 'protected_attributes' # old school attr_accessible support
 
 group :development, :test do
   gem 'factory_girl_rails'
-  gem 'mocha'
-  gem 'rails3-generators'
 end
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
-  gem 'jquery-rails'
-  gem 'compass-rails' # you need this or you get an err
-  gem 'zurb-foundation'
-end
+gem 'uglifier'
+gem 'jquery-rails'
+gem 'zurb-foundation'
 
 group :deployment do
   gem 'capistrano', '~> 2.13.5'

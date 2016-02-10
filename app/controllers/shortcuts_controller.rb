@@ -64,7 +64,8 @@ class ShortcutsController < InheritedResources::Base
 private
 
   def find_user
-    User.find_or_create_by_identifier(session[:authenticated_username] || 'anonymous')
+    identifier = session[:authenticated_username] || 'anonymous'
+    User.where(identifier: identifier).first_or_create
   end
     
   def build_resource
