@@ -82,9 +82,12 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    metaclass (0.0.4)
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
     mysql2 (0.3.17)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -165,6 +168,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   lograge
+  mocha
   mysql2
   paranoia (= 2.1.5)
   protected_attributes

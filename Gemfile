@@ -13,6 +13,7 @@ gem 'protected_attributes' # old school attr_accessible support
 
 group :development, :test do
   gem 'factory_girl_rails'
+  gem 'mocha'
 end
 
 gem 'uglifier'

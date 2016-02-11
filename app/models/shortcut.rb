@@ -1,3 +1,5 @@
+require 'addressable/uri'
+
 class Shortcut < ActiveRecord::Base
   acts_as_paranoid
   belongs_to :created_by, :class_name => 'User', :foreign_key => 'created_by_user_id'

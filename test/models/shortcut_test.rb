@@ -10,13 +10,13 @@ class ShortcutTest < ActiveSupport::TestCase
     assert_equal false, shortcut.valid?
     assert_equal "Shortcut can't be blank", shortcut.errors.full_messages.first
   end
-  
+
   test "single slash is bad" do
     shortcut = FactoryGirl.build(:shortcut, :shortcut => '/', :url => 'http://', :created_by => @user)
     assert_equal false, shortcut.valid?
     assert_equal "Shortcut must not be a single slash", shortcut.errors.full_messages.first
   end
-  
+
   test "process_path_for_user!" do
     shortcut = FactoryGirl.create(:shortcut, :shortcut => 'j', :url => 'http://jazz', :created_by => @user)
     shortcut = FactoryGirl.create(:shortcut, :shortcut => 'j/%s', :url => 'http://jazz/workitem/%s', :created_by => @user)

@@ -105,7 +105,7 @@ class ShortcutsControllerTest < ActionController::TestCase
 
   test "should get edit with correct user" do
     identifier = 'burnettk'
-    user = User.find_or_create_by_identifier(identifier)
+    user = User.where(identifier: identifier).first_or_create
     @shortcut.created_by = user
     @shortcut.save!
     get :edit, {:id => @shortcut.to_param}, {:authenticated_username => identifier}
@@ -114,7 +114,7 @@ class ShortcutsControllerTest < ActionController::TestCase
 
   test "should get edit with another user" do
     identifier = 'burnettk'
-    user = User.find_or_create_by_identifier(identifier)
+    user = User.where(identifier: identifier).first_or_create
     @shortcut.update_attribute(:created_by_user_id, user.id)
     get :edit, {:id => @shortcut.to_param}, {:authenticated_username => 'someoneelse'}
     assert_response :success
