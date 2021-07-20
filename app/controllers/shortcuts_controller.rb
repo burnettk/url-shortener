@@ -20,12 +20,12 @@ class ShortcutsController < InheritedResources::Base
 
   def popular
     @page_title = 'Popular Shortcuts'
-    @shortcuts = Shortcut.joins('left join shortcut_visits on shortcut_visits.shortcut_id = shortcuts.id').select('shortcuts.*, count(shortcut_visits.id) as visit_count').group('shortcuts.id').order('visit_count desc').limit(5).all
+    @shortcuts = Shortcut.joins('left join shortcut_visits on shortcut_visits.shortcut_id = shortcuts.id').select('shortcuts.*, count(shortcut_visits.id) as visit_count').group('shortcuts.id').order('visit_count desc').limit(50).all
   end
 
   def index
     @page_title = 'Shortcuts'
-    @other_shortcuts = Shortcut.not_for_user(find_user).limit(5).order('rand()').all
+    @popular_shortcuts = Shortcut.joins('left join shortcut_visits on shortcut_visits.shortcut_id = shortcuts.id').select('shortcuts.*, count(shortcut_visits.id) as visit_count').group('shortcuts.id').order('visit_count desc').limit(5).all.to_a
     @my_shortcuts = find_user.shortcuts.order('created_at desc').limit(6).all
     @show_all_folders = false
     @folders = Shortcut.find_by_sql("select left(shortcut, instr(shortcut, '/') - 1) as folder, count(*) count from shortcuts where deleted_at is null group by folder having count > 1 and folder != '' order by count desc limit 6")
@@ -67,7 +67,7 @@ private
     identifier = session[:authenticated_username] || 'anonymous'
     User.where(identifier: identifier).first_or_create
   end
-    
+
   def build_resource
     super
     @shortcut.created_by_user_id = find_user.id if action_name == 'create'

@@ -27,6 +27,8 @@
   </p>
 <% end %>
 
+<%= link_to 'Edit', edit_shortcut_path(@shortcut) %> |
+<%= link_to 'Delete', @shortcut, :confirm => 'Are you sure?', :method => :delete %>
 
 <% if @shortcut.url.include?('%s') && @shortcut.shortcut_visits.any? %>
   <strong>Recent usage</strong>

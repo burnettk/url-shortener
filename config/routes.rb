@@ -12,7 +12,7 @@ Shortener::Application.routes.draw do
 
   root :to => 'shortcuts#index'
   match 'sign_out' => 'authentication#sign_out', :as => :sign_out, via: [:get, :post]
-  get 'popular' => 'shortcuts#popular'
+  get 'popular' => 'shortcuts#popular', :as => :popular_shortcuts
   get 'about' => 'home#about'
   get '*path' => 'shortcuts#go', :as => :go, :format => false # path can be anything, including periods
 

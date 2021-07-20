@@ -60,7 +60,7 @@ table.shortcuts {
 
 table td.rank, table th.rank {
   white-space: nowrap;
-  width: 20%;
+  width: 10%;
   overflow: hidden;
 }
 
@@ -74,6 +74,11 @@ table td.destination, table th.destination, table td.shortcut_count, table th.sh
   white-space: nowrap;
   width: 60%;
   overflow: hidden;
+}
+
+table td.tiny-actions, table th.tiny-actions, table td.placeholder, table th.placeholder {
+  white-space: nowrap;
+  width: 10%;
 }
 
 table td.actions, table th.actions, table td.placeholder, table th.placeholder {

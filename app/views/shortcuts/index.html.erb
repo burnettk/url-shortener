@@ -29,7 +29,7 @@
             <% end %>
           <% end %>
         </td>
-        <td class="actions"><%= link_to 'Edit', edit_shortcut_path(shortcut) %> | <%= link_to 'Delete', shortcut, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'More info', shortcut_path(shortcut) %></td>
+        <td class="actions"><%= link_to 'Edit', edit_shortcut_path(shortcut) %> | <%= link_to 'Delete', shortcut, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'Show', shortcut_path(shortcut) %></td>
       </tr>
     <% end %>
   </table>
@@ -39,9 +39,9 @@
 
 <%####################################################### %>
 
-<% if @other_shortcuts.any? %>
-  <h3>Random shortcuts added by other users <%= link_to('[show all]', all_shortcuts_path) %></h3>
-  <%= render(:partial => 'shortcut_list', :locals => {:shortcuts => @other_shortcuts}) %>
+<% if @popular_shortcuts.size > 0 %>
+  <h3>Popular shortcuts <%= link_to('[more popular]', popular_shortcuts_path) %> <%= link_to('[all shortcuts]', all_shortcuts_path) %></h3>
+  <%= render(:partial => 'shortcut_list', :locals => {:shortcuts => @popular_shortcuts, :show_rank => true}) %>
 <% end %>
 
 <%####################################################### %>

@@ -1,16 +1,30 @@
+<% actions_class = defined?(show_rank) && show_rank ? 'tiny-actions' : 'actions' %>
 <table class="shortcuts">
   <tr>
+    <% if defined?(show_rank) && show_rank %>
+    <th class="rank">Rank</th>
+    <% end %>
     <th class="shortcut">Shortcut</th>
     <th class="destination">Url</th>
-    <th class="actions">Actions</th>
+    <th class="<%= actions_class %>">Actions</th>
   </tr>
 
   <% shortcuts.each_with_index do |shortcut, ii| %>
     <tr>
       <% destination = shortcut.url.include?('%s') ? nil : go_path(:path => shortcut.shortcut) %>
+      <% if defined?(show_rank) && show_rank %>
+      <td class="rank"><%= ii + 1 %></td>
+      <% end %>
       <td class="shortcut"><%= destination ? link_to(shortcut.shortcut, destination) : shortcut.shortcut %></td>
-      <td class="destination"><%= destination ? link_to(shortcut.url, destination) : shortcut.url %></td>
-      <td class="actions"><%= link_to 'Edit', edit_shortcut_path(shortcut) %> | <%= link_to 'Delete', shortcut, :confirm => 'Are you sure?', :method => :delete %> | <%= link_to 'More info', shortcut_path(shortcut) %></td>
+      <% destination_label = shortcut.url.sub(/https?:\/\//, '') %>
+      <td class="destination"><%= destination ? link_to(destination_label, destination) : destination_label %></td>
+      <td class="<%= actions_class %>">
+        <% unless defined?(show_rank) && show_rank %>
+        <%= link_to 'Edit', edit_shortcut_path(shortcut) %> |
+        <%= link_to 'Delete', shortcut, :confirm => 'Are you sure?', :method => :delete %> |
+        <% end %>
+        <%= link_to 'Show', shortcut_path(shortcut) %>
+      </td>
     </tr>
   <% end %>
 </table>

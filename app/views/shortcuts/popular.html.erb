@@ -1,17 +1,3 @@
 <h2><%= @page_title %></h2>
 
-<table class="shortcuts">
-  <tr>
-    <th class="rank">Rank</th>
-    <th class="shortcut">Shortcut</th>
-    <th class="destination">Url</th>
-  </tr>
-
-  <% @shortcuts.each_with_index do |shortcut, ii| %>
-    <tr>
-      <td class="rank"><%= ii + 1 %></td>
-      <td class="shortcut"><%= shortcut.shortcut %></td>
-      <td class="destination"><%= shortcut.url %></td>
-    </tr>
-  <% end %>
-</table>
+<%= render(:partial => 'shortcut_list', :locals => {:shortcuts => @shortcuts, :show_rank => true}) %>
