@@ -24,5 +24,5 @@ gem 'zurb-foundation'
 group :deployment do
   gem 'capistrano', '~> 2.13.5'
 end
-gem 'nokogiri', '< 1.11' # unpin when ruby 2.5+
+gem 'nokogiri', '< 1.14' # unpin when ruby 2.5+
 gem 'racc', '< 1.6' # unpin when ruby 2.5+
